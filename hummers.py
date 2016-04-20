@@ -7,11 +7,13 @@ import gc
 
 music_database = library.Library()
 
+
 def initialize():
     '''Starts the program'''
     print("\n\nWelcome!")
     auto()
     menu()
+
 
 def auto():
     '''Tasks to be run automatically each time the program starts up.'''
@@ -23,6 +25,7 @@ def auto():
         print("\nLibrary loaded! Contains %d songs.\n\n" % num)
     music_database.export()
     menu()
+
 
 def menu():
     '''Brings up main menu for program.'''
@@ -52,6 +55,7 @@ def menu():
         print("")
         menu()
 
+
 def cache_library():
     '''Caches and optionally clears currently stored library.'''
     print("****\n\n")
@@ -68,6 +72,7 @@ def cache_library():
             music_database.cache(False)
     music_database.export()
     admin()
+
 
 def remove_song():
     '''Removes a song from the database.'''
@@ -86,13 +91,14 @@ def remove_song():
         music_database.remove(ans)
     new_size = music_database.size()
     if init_size == new_size:
-        print("'"+ans+"' not found.\n")
+        print("'" + ans + "' not found.\n")
         remove_song()
     else:
         print("****\n\n")
-        print("'"+ans+"' successfully removed")
+        print("'" + ans + "' successfully removed")
         print("Library now contains %d songs.\n\n" % new_size)
     remove_song()
+
 
 def import_dir():
     '''Prompts user to enter location of directory to be imported.
@@ -120,7 +126,7 @@ def import_dir():
         music_database.save()
         print("****\n")
         print("Directory imported in %g seconds\n"
-            % round((end_time - start_time), 1))
+              % round((end_time - start_time), 1))
     else:
         print("Invalid directory name, try again? [y/n]")
         print("\n\n****")
@@ -132,7 +138,8 @@ def import_dir():
     music_database.export()
     menu()
 
-def id_sample(sample, mode = "sample"):
+
+def id_sample(sample, mode="sample"):
     '''Finds any possible matches in the database for the given sample.
 
        @param string file location
@@ -141,17 +148,18 @@ def id_sample(sample, mode = "sample"):
     match = quora.query(sample, mode)
     return match
 
+
 def match_file():
-     '''Tries to match audio file with song in database.
+    '''Tries to match audio file with song in database.
         User is prompted for file location.'''
-     print("****\n\n")
-     print("Please enter sample file path to match:")
-     print("(Enter 'm' to return to menu)\n")
-     print("\n****")
-     ans = raw_input()
-     if ans == "m":
+    print("****\n\n")
+    print("Please enter sample file path to match:")
+    print("(Enter 'm' to return to menu)\n")
+    print("\n****")
+    ans = raw_input()
+    if ans == "m":
         menu()
-     elif os.path.exists(ans):
+    elif os.path.exists(ans):
         if ans.endswith(".wav"):
             start_time = time.time()
             match = id_sample(ans)
@@ -178,11 +186,12 @@ def match_file():
             else:
                 menu()
         else:
-            print("\nQuery failed. "+"/"+ans+" is not a WAV file.")
+            print("\nQuery failed. " + "/" + ans + " is not a WAV file.")
             match_file()
-     else:
-        print("\n/"+ans+" is not a valid sample filepath. Please re-enter.")
+    else:
+        print("\n/" + ans + " is not a valid sample filepath. Please re-enter.")
         match_file()
+
 
 def record(fname):
     '''Helper function for option5 that records sound and uses fname
@@ -255,6 +264,7 @@ def record(fname):
         else:
             menu()
 
+
 def match_live():
     '''Allows user to record live audio.'''
     print("****\n\n")
@@ -271,20 +281,22 @@ def match_live():
         print("Sorry, didn't get that!")
         match_live()
 
+
 def test_helper(f, num):
     '''Helper function for test which performs the actual search.'''
     quora = QueryClient(music_database.get_hash())
     if f.endswith(".wav"):
-        print("\nSample: "+f)
+        print("\nSample: " + f)
         for n in range(num):
             start_time = time.time()
             match = quora.query(f)
             end_time = time.time()
             if match[0] == "No match was found":
                 match[0] = "None"
-            print("\nMatch %d: " % (n+1)+match[0])
-            print("%g secs" % round((end_time-start_time), 1))
+            print("\nMatch %d: " % (n + 1) + match[0])
+            print("%g secs" % round((end_time - start_time), 1))
         print("\n------------------------")
+
 
 def test():
     '''Prints repeated match results for a file or directory.'''
@@ -310,22 +322,23 @@ def test():
     if ans.endswith("/"):
         ans = ans[:-1]
     if os.path.exists(ans):
-        print("\nTEST RESULTS\nDirectory: "+ans+"\n\n")
+        print("\nTEST RESULTS\nDirectory: " + ans + "\n\n")
         if os.path.isdir(ans):
             directory = os.listdir(ans)
             if directory == []:
-                print("Directory '"+ans+"' is empty.")
+                print("Directory '" + ans + "' is empty.")
             else:
                 print("\n\n===================================")
                 for filex in os.listdir(ans):
-                    test_helper(ans+"/"+filex, num)
+                    test_helper(ans + "/" + filex, num)
         elif os.path.isfile(ans):
             print("\n\n===================================")
             test_helper(ans, num)
     else:
-        print("/"+ans+" is not a valid file or directory. Please re-enter.")
+        print("/" + ans + " is not a valid file or directory. Please re-enter.")
         test()
     admin()
+
 
 def admin():
     '''Brings up admin menu, which has useful debugging tools'''
@@ -364,8 +377,10 @@ def admin():
         print("")
         admin()
 
-#Used when we want to run the block only if the program was used by itself 
-#and not when it was imported from another module
+
+# Used when we want to run the block only if the program was used by itself
+# and not when it was imported from another module
 if __name__ == "__main__":
     import sys
+
     initialize()

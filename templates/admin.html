@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Administrator Options</h4>
+                    <ul class="list">
+                        <form action="/admin" method="post">
+                            <li class="list-item">
+                                <button name="action" value="cache_lib" type="submit" class="btn btn-info">Cache Current Library</button>
+                            </li>
+                            <li class="list-item">
+                                <button name="action" value="remove_all" type="submit" class="btn btn-info">Remove All Songs/Fingerprints</button>
+                            </li>
+                            <li class="list-item">
+                                <button name="action" value="force_save" type="submit" class="btn btn-info">Force Save Library & hash to CSV</button>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

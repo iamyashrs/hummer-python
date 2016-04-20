@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <script src="/static/js/fileinput/fileinput.min.js"></script>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 style="text-align: -webkit-center;">Import Songs to Hummers!</h4>
+
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <input id="filex" name="file[]" multiple type="file" class="file-loading">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <script type="text/javascript">
+        $('head').append('<link rel="stylesheet" href="/static/css/fileinput.min.css" type="text/css" />');
+        // initialize with defaults
+        $("#input-id").fileinput();
+
+        // with plugin options
+        $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
+
+        $("#filex").fileinput({
+            uploadUrl: "/upload",
+            uploadAsync: false,
+            allowedFileExtensions: ['wav'],
+            previewFileIcon: '<i class="fa fa-file"></i>',
+            allowedPreviewTypes: ['audio', 'wav'], // set to empty, null or false to disable preview for all types
+            previewFileIconSettings: {
+                'wav': '<i class="fa fa-file-audio-o text-warning"></i>'
+            },
+            previewFileExtSettings: {
+                'wav': function(ext) {
+                    return ext.match(/(mp3|wav)$/i);
+                }
+            }
+        });
+    </script>
+{% endblock %}

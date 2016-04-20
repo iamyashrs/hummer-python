@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table">
+                            <caption>
+                                <h4>{{ info }}</h4>
+                            </caption>
+                            {% if (songs is defined) and songs %}
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Song</th>
+                                    <th>Hash Size</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for song in songs %}
+                                    <tr>
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ song.get_id() }}</td>
+                                        <td>{{ song.hash_len() }}</td>
+                                        <td>
+                                            <form action='/remove' method="post">
+                                               <input type="submit" style="display:none;" name="song_id" value="{{ song.get_id() }}">
+                                                <a class="btn icon-btn btn-warning" href="javascript:void(0);" onclick="remove_song(this)">
+                                                    <span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>
+                                                    Remove
+                                                </a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% endif %}
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/static/js/notify.min.js"></script>
+    <script type="text/javascript">
+    function remove_song(btn){
+        $('input:submit').click();
+        $(btn).closest('tr').remove();
+        $.notify('Successfully Removed', 'success');
+    }
+    </script>
+{% endblock %}

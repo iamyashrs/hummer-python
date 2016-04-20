@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ title }}</title>
+        <link href='/static/favicon.ico' rel='icon' type='image/x-icon'/>
+        <!-- Mega-Maximum Meta Tags For SEO -->
+        <meta content='global' name='distribution'/>
+        <meta content='7 days' name='revisit'/>
+        <meta content='7 days' name='revisit-after'/>
+        <meta content='documents' name='resource-type'/>
+        <meta content='all' name='audience'/>
+        <meta content='general' name='rating'/>
+        <meta content='all' name='robots'/>
+        <meta content='index, follow' name='robots'/>
+        <meta content='Yash Raj Singh' name='author'/>
+        <meta content='Project Yello' property='og:site_name'/>
+        <meta content='en' name='language'/>
+        <meta content='IN' name='country'/>
+        <meta content='28.35,79.4167' name='ICBM'/>
+        <meta content='Hummers Application' name='DC.title'/>
+        <meta content='0;115' name='geo.position'/>
+        <meta content='IN' name='geo.region'/>
+        <meta content='India' name='geo.placename'/>
+        <meta content='Copyright 2015-2016 by Yash Raj Singh and Jaypee University of Engineering and Technology, Guna. All Rights Reserved.' name='copyright'/>
+        <meta content='humming, songs, recognition, juet, juet guna, guna, jaypee, webapp, jiit, juit, jiet, noida, jaypee university' name='keywords'/>
+        <meta content='Recognize a song by humming its tune.' name='description'/>
+        <!-- end of Mega-Maximum Meta Tags For SEO -->
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="/static/css/base.css">
+		<link rel="stylesheet" href="/static/css/bootstrap-dialog.min.css">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="wrapper" class="toggled" >
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Hummers
+                </a>
+            </li>
+            <li>
+                <a href="/">Dashboard</a>
+            </li>
+            <li>
+                <a href="/library">Library</a>
+            </li>
+            <li>
+                <a href="/import">Import</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+            <li>
+                <a href="/admin"><code>[admin]</code></a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <i class="material-icons md-36" href="#menu-toggle" id="menu-toggle" style="z-index: 1;">menu</i>
+{% block body %}
+
+{% endblock %}
+
+</div>
+<!-- /#wrapper -->
+
+<div id="footer">
+    Build by <a href="http://yashrajsingh.net/" target="_blank">Yash Raj Singh</a> & Yasha Jain, 2015-2016
+</div>
+
+<script type="text/javascript">
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+</body>
+</html>

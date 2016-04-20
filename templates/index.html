@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <canvas id="analyser"></canvas>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="content">
+                        <h3 style="text-shadow: 2px 2px #000;">Welcome to Hummers!</h3>
+                        <p style="text-shadow: 2px 2px #000;">Recognize LIVE playing songs.</p>
+                        <div class="button" data-active="false"></div>
+                        <div class="button" data-active="true"></div>
+
+                        <div id="error" class="hidden">
+                            <div id="error-dialog">
+                                <h1 id="error-title"></h1>
+                                <p id="error-text"></p>
+                                <button id="error-button">Dismiss</button>
+                            </div>
+                        </div>
+
+                        <div id="countdown"></div>
+                        <progress id="upload_bar" class="center-block" style="margin-top:10px;"
+                                  min="0" max="100" value="0">0% complete</progress>
+
+                        <div class="log">
+                            <h4>Log</h4>
+                            <p id="log"></p>
+{#                            <ul id="recordingslist"></ul>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+<script src="/static/js/bootstrap-dialog.min.js"></script>
+<script src="/static/js/jquery.countdown360.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/recorder.js"></script>
+<script src="/static/js/visual.js"></script>
+<script type="application/javascript">
+    (function() {
+        var htmlCanvas = document.getElementById('analyser'),
+        context = htmlCanvas.getContext('2d');
+
+        initialize();
+
+        function initialize() {
+            window.addEventListener('resize', resizeCanvas, false);
+            resizeCanvas();
+        }
+
+        function resizeCanvas() {
+            htmlCanvas.width = window.innerWidth;
+            htmlCanvas.height = window.innerHeight;
+        }
+    })();
+</script>
+<script type="text/javascript" src="/static/js/background.cycle.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("body").backgroundCycle({
+            imageUrls: [
+{#                '/static/img/wall/wall1.jpg',#}
+                '/static/img/wall/wall2.jpg',
+                '/static/img/wall/wall3.jpg',
+                '/static/img/wall/wall4.jpg'
+            ],
+            fadeSpeed: 2000,
+            duration: 5000,
+            backgroundSize: SCALING_MODE_COVER
+        });
+    });
+</script>
+{% endblock %}
